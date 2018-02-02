@@ -5,6 +5,13 @@
 
 using namespace std;
 
+float rotation_angle=0.003;
+float vx=0.001;
+float vy=0.001;
+float cx=-0.85;
+float cy=0.0;
+
+// random float generator
 float randf(float lo, float hi) {
     float random = ((float) rand()) / (float) RAND_MAX;
     float diff = hi - lo;
@@ -12,6 +19,8 @@ float randf(float lo, float hi) {
     return lo + r;
 }
 
+
+// circle function
 void DrawCircle(float cx, float cy, float r, int num_segments)
 {
     glBegin(GL_POLYGON);
@@ -30,31 +39,44 @@ void DrawCircle(float cx, float cy, float r, int num_segments)
 
 
 void display(){
-    // glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
 
     // set every time new matrix
     // glLoadIdentity();
 
     // set rotation to some angle with axis 
-    // glRotatef(0.1,0.0,0.0,1.0);
+    // glRotatef(rotation_angle,0.0,0.0,1.0);
+    // rotation_angle+=0.003;
 
     // make triangle with vertices
     // glBegin(GL_TRIANGLES);
-    //     glColor3f(0.0,0.0,0.0);
+        // glColor3f(1.0,1.0,0.0);
     //     glVertex3f(1.0,0.0,0.0);
     //     glVertex3f(0.0,-1.0,0);
     //     glVertex3f(1.0,-1.0,0.0);
     // glEnd();
 
     glLoadIdentity();
-    glColor3f(randf(0.0,1.0),randf(0.0,1.0),randf(0.0,1.0));
-    DrawCircle(randf(-1.0,1.0),randf(-1.0,1.0),randf(0.0,0.05),360);
+    // glColor3f(randf(0.0,1.0),randf(0.0,1.0),randf(0.0,1.0));
+    // if(translate_by<1.0){
+    //     glTranslatef(translate_by,0.0,0.0);
+    //     translate_by+=0.001;
+    // }else if(translate_by>=1.0-0.15){
+    //     glTranslatef(translate_by,0.0,0.0);
+    //     translate_by-=0.001;
+    // }
 
-    glColor3f(randf(0.0,1.0),randf(0.0,1.0),randf(0.0,1.0));
-    DrawCircle(randf(-1.0,1.0),randf(-1.0,1.0),randf(0.0,0.05),360);
+    if(cx<0.85 && vx>0.0){
+        vx=0.001;
+    }else if(cx>-0.85){
+        vx=-0.001;
+    }else{
+        vx=-vx;
+    }
 
-    glColor3f(randf(0.0,1.0),randf(0.0,1.0),randf(0.0,1.0));
-    DrawCircle(randf(-1.0,1.0),randf(-1.0,1.0),randf(0.0,0.05),360);
+    cx+=vx;
+
+    DrawCircle(cx,cy,0.15,360);
 
     glutSwapBuffers();
 }
