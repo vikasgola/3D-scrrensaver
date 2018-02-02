@@ -14,7 +14,6 @@ float randf(float lo, float hi) {
 
 void DrawCircle(float cx, float cy, float r, int num_segments)
 {
-   
     glBegin(GL_POLYGON);
     for(int ii = 0; ii < num_segments; ii++)
     {
@@ -49,13 +48,13 @@ void display(){
 
     glLoadIdentity();
     glColor3f(randf(0.0,1.0),randf(0.0,1.0),randf(0.0,1.0));
-    DrawCircle(randf(-1.0,1.0),randf(-1.0,1.0),0.05,360);
+    DrawCircle(randf(-1.0,1.0),randf(-1.0,1.0),randf(0.0,0.05),360);
 
     glColor3f(randf(0.0,1.0),randf(0.0,1.0),randf(0.0,1.0));
-    DrawCircle(randf(-1.0,1.0),randf(-1.0,1.0),0.05,360);
+    DrawCircle(randf(-1.0,1.0),randf(-1.0,1.0),randf(0.0,0.05),360);
 
     glColor3f(randf(0.0,1.0),randf(0.0,1.0),randf(0.0,1.0));
-    DrawCircle(randf(-1.0,1.0),randf(-1.0,1.0),0.05,360);
+    DrawCircle(randf(-1.0,1.0),randf(-1.0,1.0),randf(0.0,0.05),360);
 
     glutSwapBuffers();
 }
@@ -65,7 +64,7 @@ void reshape(int w, int h){
 }
 
 void init(){
-    glClearColor(0.3,0.3,0.3,1.0);
+    glClearColor(0.0,0.0,0.0,1.0);
 }
 
 int main(int argc, char** argv)
